@@ -13,6 +13,7 @@ class HttpContext implements Runnable{
     protected HttpWebServer webserver;
     protected ContextRuleSet ruleset;
     protected Socket webpageSocket;
+    protected final Integer identifier;
 
 
 
@@ -21,6 +22,16 @@ class HttpContext implements Runnable{
         this.port = context.port;
         this.webserver = context.webserver;
         this.ruleset = context.ruleset;
+        identifier = 0;
+    }
+
+
+    public HttpContext(HttpContext context, Integer id){
+        this.directoryMap = context.directoryMap;
+        this.port = context.port;
+        this.webserver = context.webserver;
+        this.ruleset = context.ruleset;
+        identifier = id;
     }
 
 
@@ -29,20 +40,37 @@ class HttpContext implements Runnable{
         this.directoryMap = dirMap;
         this.port = p;
         this.ruleset = new ContextRuleSet();
+        identifier = 0;
     }
 
 
 
-    
+    @Deprecated
     public InputStream getInputStream_expr1(){
         return webserver.getInputStream();
     }
 
 
+    @Deprecated
     public OutputStream getOutputStream_expr1(){
         return webserver.getOutputStream();
     }
 
+
+
+    public InputStream getInputStream(){
+        return webserver.getInputStream();
+    }
+
+
+    public OutputStream getOutputStream(){
+        return webserver.getOutputStream();
+    }
+
+    
+    public boolean compare(HttpContext newContext){
+        return (this.ruleset.equals(newContext.ruleset) && this.identifier == newContext.identifier);
+    }
 
 
     public ContextRuleSet getRuleSet(){

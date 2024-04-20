@@ -1,0 +1,18 @@
+
+0. Prerequisite knowledge
+    - 
+
+1. HelloWorld
+    - Hello World: Very simple program that prints a url to webpage that says "hello"
+    - Multiple URLS: Show the possibility of having multiple urls 
+    - Favicon: Reuse the "Hello World" project concept, but this time point out the presence of a Favicon
+
+2. Contexts
+    - Create a simple context that prints out a message whenever the context runs (should always happen)
+    - Demonstrate the capabilities of ContextRuleSets, print a message whenever a specific url is entered
+    - Show the information that can be accessed: print url of the page, request method, etc.
+    - General example of printing out a message accepted by POST request
+
+3. Webserver Pipeline
+    - Show a general scheme for the pipeline to be accessed
+    

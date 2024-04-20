@@ -196,10 +196,49 @@ public class HttpWebServer{
         directoryMap.put(directory, path);
     }
 
+    public void addPostContentBinder(String url){
+        this.contextList.add(new DefaultPostContentBindingContext(this.createContext(), url));
+    }
+
+
+    public void removeDirectory(String directory){
+        if(directoryMap.containsKey(directory)){
+            directoryMap.remove(directory);
+        }else{
+            System.out.println("Warning: Directory \"" + directory + "\" cannot be removed as it has not been added");
+        }
+    }
+
+    
+    public void removePostContentBinder(String url){
+        DefaultPostContentBindingContext dpcbc = new DefaultPostContentBindingContext(this.createContext(), url);
+        HttpContext contextToRemove = null;
+        for(HttpContext context : contextList){
+            if(context.compare(dpcbc)){
+                contextToRemove = context;
+            }
+        }
+
+        if(contextToRemove != null){
+            contextList.remove(contextToRemove);
+        }
+    }
+
+
 
     public void addContext(HttpContext newContext){
         contextList.add(newContext);
     }
+
+    public void removeContext(HttpContext oldContext){
+        if(contextList.contains(oldContext)){
+            contextList.remove(oldContext);
+        }else{
+            System.out.println("Warning: Context \"" + oldContext.toString() + "\" cannot be deleted as it has has not been added");
+        }
+    }
+
+    
 
 
     public HttpContext createContext(){
@@ -264,7 +303,10 @@ public class HttpWebServer{
     public synchronized File getFavicon(){
         return favicon;
     }
-
-    
-
 }
+
+
+/* HTTPRequest data is incorrect when a POST message is sent with "unknown"
+ *      
+ * 
+ */

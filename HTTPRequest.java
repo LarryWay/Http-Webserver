@@ -44,3 +44,12 @@ public class HTTPRequest {
 
     
 }
+
+
+/* To-do
+ * - Make variables constant; they should not be changeable once initialized
+ *      Because HTTPRequest objects are shared between contexts by reference, these 
+ *      contexts should not be able to modify the object, in turn modifying what other 
+ *      contexts will see
+ * 
+ */
