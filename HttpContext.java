@@ -1,6 +1,8 @@
 import java.util.HashMap;
-import java.io.*;
 import java.net.Socket;
+import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 
 class HttpContext implements Runnable{
@@ -8,7 +10,6 @@ class HttpContext implements Runnable{
     protected HashMap<String, File> directoryMap;
     protected Integer port;
     protected HTTPRequest request = null;
-    //protected HttpWebServer webserver_expr1;
     protected HttpWebServer webserver;
     protected ContextRuleSet ruleset;
     protected Socket webpageSocket;

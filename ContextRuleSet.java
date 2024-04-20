@@ -41,7 +41,6 @@ public class ContextRuleSet {
     public boolean equals(ContextRuleSet newSet){
 
         if(methodRule != HttpMethod.NULL && methodRule != newSet.methodRule){
-            //System.out.println("http method does not match");
             return false;
         }
         
@@ -57,7 +56,6 @@ public class ContextRuleSet {
             return false;
         }
 
-        //System.out.println("Successful comparison");
         return true;
 
     }
