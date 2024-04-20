@@ -1,10 +1,13 @@
-import java.io.*;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.File;
 import java.net.*;
-import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.ArrayList;
 
 
+/*  -- Defined in its own public class "DefaultFaviconHandlerContext"
+       Can now be accessed by users using the .jar file
 
 class FaviconHandlerContext extends HttpContext{;
     
@@ -34,8 +37,13 @@ class FaviconHandlerContext extends HttpContext{;
     }
 
 }
+*/
 
 
+
+
+/* -- Defined in its own public class "DefaultWebpageDisplayContext"
+      Can now be accessed by users using the .jar file
 class HtmlWebpageDisplayContext extends HttpContext{
 
     public HtmlWebpageDisplayContext(HttpContext context){
@@ -57,6 +65,8 @@ class HtmlWebpageDisplayContext extends HttpContext{
     }
 
 }
+*/
+
 
 
 
