@@ -3,22 +3,31 @@
 
 public class HTTPRequest {
 
+    // Common data for every request
     protected HttpMethod method = HttpMethod.NULL;
     protected String url = null;
     protected String content = null;
     protected String htmlVersion = null;
-    protected String contentType = null;
-    protected Integer contentLength = -1;
-    protected String cookies = null;
     protected String host = null;
     protected String connection = null;
-    
+    protected String cookies = null;
+
+    // Unique data for only POST requests
+    protected String contentType = null;
+    protected Integer contentLength = -1;
+
+    // Unique data for only GET requests
+    protected String[][] urlParameters = null;
+
+    // Universal data
     protected String fullMessage = null;
+
 
 
     public HTTPRequest(){
         // default initialization aka do nothing
     }
+
 
     public HTTPRequest(HTTPRequest newRequest){
         method = newRequest.getMethod();
@@ -77,7 +86,17 @@ public class HTTPRequest {
         htmlVersion = line[2];
 
         if(method == HttpMethod.GET){
-            content = "";
+
+            if(url.contains("?")){
+                String[] paramSection = url.substring(url.indexOf("?") + 1).split("&");
+                urlParameters = new String[paramSection.length][];
+
+                for(int i = 0 ; i < urlParameters.length ; i++){
+                    urlParameters[i] = paramSection[i].split("=");
+                }
+            }
+
+
         }else{
             content = split[split.length - 1];
         }
@@ -120,6 +139,10 @@ public class HTTPRequest {
 
     public String getConnection(){
         return this.connection;
+    }
+
+    public String[][] getUrlParameters(){
+        return this.urlParameters;
     }
 
 
@@ -166,5 +189,7 @@ public class HTTPRequest {
  *      Because HTTPRequest objects are shared between contexts by reference, these 
  *      contexts should not be able to modify the object, in turn modifying what other 
  *      contexts will see
+ * - Make the URL parameter variable a bit more clear than just a 2D array
+ * - Not sure if URL parameter should to be a a rule in the context rule set
  * 
  */
