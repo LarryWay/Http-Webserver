@@ -1,3 +1,3 @@
 
 jar:
-	jar cf lib/thing.jar *.java
+	jar cf lib/HttpWebserver.jar *.java
