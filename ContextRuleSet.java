@@ -1,18 +1,10 @@
 
 
-public class ContextRuleSet {
-
-    public HttpMethod methodRule = HttpMethod.NULL;
-    public String urlRule = null;
-    public String contentRule = null;
-    public String htmlVersion = null;
+public class ContextRuleSet extends HTTPRequest{
 
 
     public ContextRuleSet(HTTPRequest request){
-        this.methodRule = request.method;
-        this.urlRule = request.url;
-        this.contentRule = request.content;
-        this.htmlVersion = request.htmlVersion;
+        super(request);
     }
 
 
@@ -21,38 +13,78 @@ public class ContextRuleSet {
     }
 
     public void setMethodRule(HttpMethod newRule){
-        this.methodRule = newRule;
+        this.method = newRule;
     }
 
     public void setUrlRule(String newRule){
-        this.urlRule = newRule;
+        this.url = newRule;
     }
 
     public void setContentRule(String newRule){
-        this.contentRule = newRule;
+        this.content = newRule;
     }
 
-    public void setHtmlVersion(String newRule){
+    public void setHtmlVersionRule(String newRule){
         this.htmlVersion = newRule;
+    }
+
+    public void setContentTypeRule(String newRule){
+        this.contentType = newRule;
+    }
+
+    public void setContentLengthRule(Integer newRule){
+        this.contentLength = newRule;
+    }
+
+    public void setHostRule(String newRule){
+        this.host = newRule;
+    }
+
+    public void setCookiesRule(String newRule){
+        this.cookies = newRule;
+    }
+
+    public void setConnectionRule(String newRule){
+        this.connection = newRule;
     }
 
 
 
     public boolean equals(ContextRuleSet newSet){
 
-        if(methodRule != HttpMethod.NULL && methodRule != newSet.methodRule){
+        if(method != HttpMethod.NULL && method != newSet.getMethod()){
             return false;
         }
         
-        if(urlRule != null && !urlRule.equals(newSet.urlRule)){
+        if(url != null && !url.equals(newSet.getUrl())){
             return false;
         }
 
-        if(contentRule != null && !contentRule.equals(newSet.contentRule)){
+        if(content != null && !content.equals(newSet.getContent())){
             return false;
         }
 
-        if(htmlVersion != null && !htmlVersion.equals(newSet.htmlVersion)){
+        if(htmlVersion != null && !htmlVersion.equals(newSet.getHtmlVersion())){
+            return false;
+        }
+
+        if(contentType != null && !contentType.equals(newSet.getContentType())){
+            return false;
+        }
+
+        if(contentLength != -1 && !(contentLength == newSet.getContentLength())){
+            return false;
+        }
+
+        if(host != null && !host.equals(newSet.getHost())){
+            return false;
+        }
+
+        if(cookies != null && !cookies.equals(newSet.getCookies())){
+            return false;
+        }
+
+        if(connection != null && !connection.equals(newSet.getConnection())){
             return false;
         }
 

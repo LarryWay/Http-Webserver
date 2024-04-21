@@ -17,8 +17,10 @@ public enum HttpMethod{
                 return "PUT";
             case DELETE:
                 return "DELETE";
+            case NULL:
+                return "NULL";
             default:
-                return "";
+                return "UNSUPPORTED";
 
         }
     }

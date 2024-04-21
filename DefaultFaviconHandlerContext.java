@@ -8,7 +8,7 @@ public class DefaultFaviconHandlerContext extends HttpContext{;
 
         ruleset.setUrlRule("/favicon.ico");
         ruleset.setMethodRule(HttpMethod.GET);
-        ruleset.setHtmlVersion("HTTP/1.1");
+        ruleset.setHtmlVersionRule("HTTP/1.1");
     }
 
     @Override
