@@ -73,7 +73,6 @@ public class HTTPRequest {
 
 
         method = HttpMethod.stringToMethod(line[0]);
-        System.out.println("PARSED METHOD FOUND: " + HttpMethod.methodToString(method));
         url = line[1];
         htmlVersion = line[2];
 
