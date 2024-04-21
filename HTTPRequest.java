@@ -94,6 +94,7 @@ public class HTTPRequest {
                 for(int i = 0 ; i < urlParameters.length ; i++){
                     urlParameters[i] = paramSection[i].split("=");
                 }
+                url = url.substring(0, url.indexOf("?"));
             }
 
 
