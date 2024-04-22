@@ -14,6 +14,7 @@ public class DefaultPostContentBindingContext extends HttpContext{
     public void run(){
         try{
             getOutputStream().write(request.content.getBytes("UTF-8"));
+            webpageSocket.getOutputStream().write(new HTTPResponse(StatusCode.OK_200).toBytes());
         }catch(Exception e){
             e.printStackTrace();
         }

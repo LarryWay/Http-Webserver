@@ -85,20 +85,18 @@ public class HTTPRequest {
         url = line[1];
         htmlVersion = line[2];
 
-        if(method == HttpMethod.GET){
+        if(url.contains("?")){
+            String[] paramSection = url.substring(url.indexOf("?") + 1).split("&");
+            urlParameters = new String[paramSection.length][];
 
-            if(url.contains("?")){
-                String[] paramSection = url.substring(url.indexOf("?") + 1).split("&");
-                urlParameters = new String[paramSection.length][];
-
-                for(int i = 0 ; i < urlParameters.length ; i++){
-                    urlParameters[i] = paramSection[i].split("=");
-                }
-                url = url.substring(0, url.indexOf("?"));
+            for(int i = 0 ; i < urlParameters.length ; i++){
+                urlParameters[i] = paramSection[i].split("=");
             }
+            url = url.substring(0, url.indexOf("?"));
+        }
 
 
-        }else{
+        if(method == HttpMethod.POST){
             content = split[split.length - 1];
         }
 
