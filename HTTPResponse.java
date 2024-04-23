@@ -28,27 +28,19 @@ public class HTTPResponse {
 
 
 
-/* 
-    -- Alternative constructor, but wont be pretty with html files
-    public HTTPResponse(File file){
+
+    public HTTPResponse(String rawText){
         status = StatusCode.OK_200;
-        try(BufferedInputStream buff = new BufferedInputStream(new FileInputStream(file))){
-            contentBytes = buff.readAllBytes();
-            contentBytesLength = contentBytes.length;
+        this.content = rawText;
+
+        try{
+            this.contentBytes = this.content.getBytes("UTF-8");
+            this.contentBytesLength = contentBytes.length;
         }catch(Exception e){
-
+            e.printStackTrace();
         }
+
     }
-*/
-
-
-    public HTTPResponse(byte[] rawBytes){
-        contentBytes = rawBytes;
-        content = String.valueOf(contentBytes);
-        contentBytesLength = contentBytes.length;
-        status = StatusCode.OK_200;
-    }
-
 
 
 
@@ -78,30 +70,7 @@ public class HTTPResponse {
         }
     }
 
-    public byte[] toBytes(boolean useRawBytes){
-        StringBuilder builder = new StringBuilder();
-        builder.append(VERSION);
-        builder.append(StatusCode.statusToString(status));
-        builder.append("\r\n");
-        builder.append("Content Length: ");
-        builder.append(Integer.toString(contentBytesLength));
-        builder.append("\r\n\r\n");
 
-        byte[] headerBytes;
-
-        try{
-            headerBytes = builder.toString().getBytes(CHARSET);
-
-            byte[] combinedBytes = new byte[contentBytes.length + headerBytes.length];
-            System.arraycopy(headerBytes, 0, combinedBytes, 0, headerBytes.length);
-            System.arraycopy(contentBytes, 0, combinedBytes, headerBytes.length, contentBytesLength);
-            return combinedBytes;
-        }catch(Exception e){
-            e.printStackTrace();
-            return new byte[0];
-        }
-
-    }
 
 }
 
